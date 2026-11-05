@@ -165,7 +165,14 @@
 			{
 				"name": "Bronze to Silver",
 				"type": "DatabricksNotebook",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Landing to bronze",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "0.12:00:00",
 					"retry": 0,
@@ -177,6 +184,10 @@
 				"typeProperties": {
 					"notebookPath": "/caresync-repo/caresync_azuredatabricks/bronze-to-silver",
 					"baseParameters": {
+						"table_name": {
+							"value": "@activity('Read Table Details').output.firstRow.silver_table_name",
+							"type": "Expression"
+						},
 						"landing_timestamp": {
 							"value": "@variables('start_time')",
 							"type": "Expression"
