@@ -151,11 +151,11 @@
 		"parameters": {
 			"source_system": {
 				"type": "String",
-				"defaultValue": "neon_postgres"
+				"defaultValue": "adls_csv"
 			},
 			"adf_run_id": {
 				"type": "string",
-				"defaultValue": "a12"
+				"defaultValue": "a13"
 			}
 		},
 		"variables": {
