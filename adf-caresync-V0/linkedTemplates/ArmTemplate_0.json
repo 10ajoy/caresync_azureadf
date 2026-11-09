@@ -1197,6 +1197,23 @@
 										],
 										"scriptBlockExecutionTimeout": "02:00:00"
 									}
+								},
+								{
+									"name": "Update Pipeline Failed",
+									"type": "Fail",
+									"dependsOn": [
+										{
+											"activity": "Ingest from Source to Silver",
+											"dependencyConditions": [
+												"Failed"
+											]
+										}
+									],
+									"userProperties": [],
+									"typeProperties": {
+										"message": "Inner pipeline failed",
+										"errorCode": "500"
+									}
 								}
 							]
 						}
@@ -1249,7 +1266,7 @@
 							},
 							"waitOnCompletion": true,
 							"parameters": {
-								"source_system": "neo_postgres",
+								"source_system": "neon_postgres",
 								"adf_run_id": {
 									"value": "@pipeline().RunId",
 									"type": "Expression"
