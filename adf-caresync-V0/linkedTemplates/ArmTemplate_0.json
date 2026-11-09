@@ -1022,6 +1022,23 @@
 										],
 										"scriptBlockExecutionTimeout": "02:00:00"
 									}
+								},
+								{
+									"name": "Gold notebook Failed",
+									"type": "Fail",
+									"dependsOn": [
+										{
+											"activity": "Silver To Gold",
+											"dependencyConditions": [
+												"Failed"
+											]
+										}
+									],
+									"userProperties": [],
+									"typeProperties": {
+										"message": "Inner pipeline failed",
+										"errorCode": "500"
+									}
 								}
 							]
 						}
@@ -1128,6 +1145,10 @@
 										"parameters": {
 											"table_id": {
 												"value": "@item().table_id",
+												"type": "Expression"
+											},
+											"adf_run_id": {
+												"value": "@pipeline().RunId",
 												"type": "Expression"
 											}
 										}
